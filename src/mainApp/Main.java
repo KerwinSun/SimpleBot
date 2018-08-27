@@ -13,9 +13,9 @@ public class Main {
 	    
 		String combinedHTML ="";
 		ArrayList<String> sites = new ArrayList<>();
-		sites.add("http://www.indexnz.com/Top/Computers-and-Internet/Software/Software-Firms/");
-		sites.add("http://www.indexnz.com/Top/Computers-and-Internet/Software/Software-Firms/2");
 		sites.add("http://www.indexnz.com/Top/Computers-and-Internet/Software/Software-Firms/3");
+		sites.add("http://www.indexnz.com/Top/Computers-and-Internet/Software/Software-Firms/2");
+		sites.add("http://www.indexnz.com/Top/Computers-and-Internet/Software/Software-Firms/");
 		
 		
 		for(String site : sites) {
@@ -38,8 +38,8 @@ public class Main {
 		emails.clear();
 		emails.addAll(hashmails);
 		
-		
-		System.out.println(Arrays.toString(emails.toArray()));
+		//print all emails, remove brackets for easy copypastarino
+		System.out.println(Arrays.toString(emails.toArray()).replaceAll("[\\[\\]]", ""));
 		
 		
 	}

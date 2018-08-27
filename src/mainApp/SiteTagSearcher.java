@@ -1,5 +1,6 @@
 package mainApp;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +28,8 @@ public class SiteTagSearcher {
 	    	String str = matcher.group(1).replaceAll("\"", "");
 	    	if(!foundElements.contains(str)) {
 	        foundElements.add(str);
+	    	str = str.split("\\?")[0] + "/contact";
+	    	foundElements.add(str);
 	    	}
 	    }
 	    return foundElements;
@@ -40,6 +43,7 @@ public class SiteTagSearcher {
 	    while (m.find()) {
 	    	if(!m.group().contains(".png")) {
 	    	foundElements.add(m.group().replaceAll("&#64;", "@"));
+	    	
 	    	}
 	    }
 	    
