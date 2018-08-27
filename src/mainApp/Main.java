@@ -13,10 +13,13 @@ public class Main {
 	    
 		String combinedHTML ="";
 		ArrayList<String> sites = new ArrayList<>();
-		sites.add("http://www.indexnz.com/Top/Computers-and-Internet/Software/Software-Firms/3");
-		sites.add("http://www.indexnz.com/Top/Computers-and-Internet/Software/Software-Firms/2");
-		sites.add("http://www.indexnz.com/Top/Computers-and-Internet/Software/Software-Firms/");
 		
+		//add more pages to this for more results 
+		int pages = 5;
+		for(int i = 1; i < pages; i++) {
+			//change this for different search queries
+		sites.add("http://www.indexnz.com/Top/Computers-and-Internet/Software/Software-Firms/" + i);
+		}
 		
 		for(String site : sites) {
 		SiteHTMLGETTER getter = new SiteHTMLGETTER(site);
@@ -24,13 +27,18 @@ public class Main {
 		combinedHTML += getter.getSiteHTML();
 		}
 		
-		
+		//This regex string is what wraps around a url on this website, for other sites
+		//change this regex such that its in the appropriate format
 		SiteTagSearcher searcher = new SiteTagSearcher(combinedHTML, "><a href=(.+?) rel=");
+		
+		
 		searcher.getBetweenElements();
 		searcher.printElements();
 		
 		SiteEmailGetter emailGetter = new SiteEmailGetter(searcher.getBetweenElements());
 		ArrayList<String> emails = emailGetter.getEmailsFromSites();
+		
+		System.out.println("\n\nEmails found on employer sites were:");
 		
 		//lazy way to sanatize email duplicates
 		Set<String> hashmails = new HashSet<>();
